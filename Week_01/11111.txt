@@ -1,0 +1,21 @@
+{
+  appmark:
+  time:
+  sign:
+  params:加密串
+}
+
+{
+  appmark:
+  time:
+  sign:
+  params:[
+  {
+  key:加密串,
+  key:加密串
+  },{
+  key:加密串,
+  key:加密串
+  }
+  ]
+}
