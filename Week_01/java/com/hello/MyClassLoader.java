@@ -22,7 +22,7 @@ public class MyClassLoader extends ClassLoader {
         InputStream in;
         className = className.replace(".", "/");
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-            in = new FileInputStream(new File("Week_01/java/com/hello/" + className + ".xlass"));
+            in = new FileInputStream(new File("Week_01/java/" + className + ".xlass"));
             int a;
             while ((a = in.read()) != -1) {
                 out.write(a);
