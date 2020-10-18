@@ -49,3 +49,57 @@
 > 5225 interned Strings occupying 445536 bytes.
 >
 
+
+```$xslt
+Compiled from "CodeDemo01.java"
+public class com.gitee.ywj1352.CodeDemo01 {
+  public com.gitee.ywj1352.CodeDemo01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: iconst_2
+       1: istore_1
+       2: iconst_1
+       3: istore_2
+       4: iconst_0
+       5: istore_3
+       6: iload_3
+       7: bipush        10
+       9: if_icmpge     22
+      12: iload_1
+      13: iload_2
+      14: iadd
+      15: istore_1
+      16: iinc          3, 1
+      19: goto          6
+      22: iload_1
+      23: bipush        10
+      25: if_icmple     32
+      28: iload_1
+      29: iload_1
+      30: imul
+      31: istore_1
+      32: new           #2                  // class com/gitee/ywj1352/CodeDemo01
+      35: dup
+      36: invokespecial #3                  // Method "<init>":()V
+      39: astore_3
+      40: aload_3
+      41: iload_1
+      42: iload_2
+      43: invokevirtual #4                  // Method add:(II)I
+      46: istore        4
+      48: return
+
+  public int add(int, int);
+    Code:
+       0: iload_1
+       1: iload_2
+       2: iadd
+       3: ireturn
+}
+
+```
