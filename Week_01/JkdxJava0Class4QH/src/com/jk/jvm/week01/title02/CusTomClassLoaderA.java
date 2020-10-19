@@ -2,6 +2,7 @@ package com.jk.jvm.week01.title02;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import com.jk.util.ConvertUtil;
 import com.jk.util.FileUtil;
@@ -41,7 +42,7 @@ public class CusTomClassLoaderA extends ClassLoader{
 //			循环转换
 			for(int i=0;i<filebytes.length;i++) {
 				
-				int temp_ = 255-ConvertUtil.byteToInt(filebytes[i]);
+				int temp_ = 255-filebytes[i];
 				
 				filebytes[i] = ConvertUtil.intToByte(temp_);
 				
