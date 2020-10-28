@@ -7,7 +7,6 @@
 
 - 1.使用 GCLogAnalysis.java 自己演练一遍串行/并行/CMS/G1 的案例。    
 - 2.使用压测工具（wrk 或 sb），演练 gateway-server-0.0.1-SNAPSHOT.jar 示例。
-
 - 3.（选做） 如果自己本地有可以运行的项目，可以按照 2 的方式进行演练。
 略过
 
@@ -28,7 +27,7 @@ Average: 1000.1ms
 Min: 98ms
 Max: 1256ms
 ```
-此时RPS较小，因为是单线程工作；
+此时RPS较小，因为是单线程工作，程序里还有20ms的sleep，固RPS受此影响。
 
 (2)运行样例HttpServer02（每一个请求，new一个线程）进行测试，得到结果：
 ```text
@@ -57,7 +56,7 @@ Max: 119ms
 此时开启了一个固定大小（40）的线程池，前后的请求均复用此线程池，避免浪费过多系统资源。
 
 (4) 运行Netty Server，得到结果：
-```
+```text
 Requests: 121880
 RPS: 3915.5
 90th Percentile: 0ms
