@@ -1,7 +1,5 @@
-package com.gitee.ywj1352.inbound;
+package com.gitee.ywj1352.core;
 
-import com.gitee.ywj1352.NettyServerApplication;
-import com.gitee.ywj1352.core.Server;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;

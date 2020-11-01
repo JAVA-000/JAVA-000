@@ -1,6 +1,8 @@
-package com.gitee.ywj1352.inbound;
+package com.gitee.ywj1352.core;
 
-import com.gitee.ywj1352.filter.DefaultHttpRequestFilter;
+import com.gitee.ywj1352.filter.RouterHttpRequestFilter;
+import com.gitee.ywj1352.handler.inbound.HttpInboundHandler;
+import com.gitee.ywj1352.handler.outbound.HttpOutboundHandler;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -17,12 +19,12 @@ public class HttpChannelInitializer extends ChannelInitializer {
     @Override
     protected void initChannel(Channel channel) throws Exception {
         ChannelPipeline pipeline = channel.pipeline();
-        pipeline.addLast(new HttpRequestDecoder());
-        pipeline.addLast(new HttpResponseEncoder());
-        pipeline.addLast(new LoggingHandler(LogLevel.INFO));
         // 业务 handler 设置
+        pipeline.addLast(new HttpResponseEncoder());
+        pipeline.addLast(new HttpRequestDecoder());
         pipeline.addLast(new HttpObjectAggregator(1024 * 1024));
-        pipeline.addLast(new HttpInboundHandler(Arrays.asList(new DefaultHttpRequestFilter())));
-        pipeline.addLast(new HttpInboundHandler(Arrays.asList(new DefaultHttpRequestFilter())));
+        pipeline.addLast(new HttpOutboundHandler());
+        pipeline.addLast(new HttpInboundHandler(Arrays.asList(new RouterHttpRequestFilter())));
+        pipeline.addLast(new LoggingHandler(LogLevel.INFO));
     }
 }

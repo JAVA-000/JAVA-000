@@ -1,4 +1,4 @@
-package com.gitee.ywj1352.core;
+package com.gitee.ywj1352.utils;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

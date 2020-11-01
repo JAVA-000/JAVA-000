@@ -24,4 +24,11 @@ https: //github. com/dromara/soul
    1. 服务级别的流控
    2. 服务降级和熔断
    3. 路由与负载均衡,灰度策略
-   4. 
+
+
+# Netty 模型
+1. Reactor模型对应着 EventLoop
+2. Netty 处理流程 BECH BossGroup(接受Socket)-> EventLoop(任务loop)->Channel(任务通道)->Handler(任务处理器)
+
+
+![avatar](img/Netty工作模型.jpg)

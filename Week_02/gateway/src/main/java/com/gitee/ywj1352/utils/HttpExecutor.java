@@ -1,4 +1,4 @@
-package com.gitee.ywj1352.core;
+package com.gitee.ywj1352.utils;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
