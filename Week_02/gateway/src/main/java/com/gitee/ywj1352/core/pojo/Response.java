@@ -7,10 +7,10 @@ import io.netty.handler.codec.http.*;
  * @date: 2020/11/2 09:22
  * @description:
  */
-public class Responese {
+public class Response {
     private FullHttpResponse fullHttpResponse;
 
-    public Responese(FullHttpResponse fullHttpResponse) {
+    public Response(FullHttpResponse fullHttpResponse) {
         this.fullHttpResponse = fullHttpResponse;
     }
 
