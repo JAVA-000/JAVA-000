@@ -16,9 +16,8 @@ public class RouterHttpRequestFilter implements HttpRequestFilter,HttpEndpointRo
         HashMap<String, String> map = new HashMap<>();
         map.put("host","127.0.0.1");
         map.put("port","8088");
-        ctx.writeAndFlush(fullRequest);
-
     }
+
     @Override
     public String route(List<String> endpoints) {
         return null;

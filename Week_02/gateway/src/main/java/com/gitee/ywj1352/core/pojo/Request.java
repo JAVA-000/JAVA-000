@@ -1,12 +1,16 @@
 package com.gitee.ywj1352.core.pojo;
 
-import io.netty.handler.codec.http.HttpMethod;
+
+import io.netty.handler.codec.http.FullHttpRequest;
 
 public class Request {
     private String serverId;
     private String url;
-    private HttpMethod httpMethod;
+    private FullHttpRequest request;
 
+    public Request(FullHttpRequest request) {
+        this.request = request;
+    }
 
     public String getServerId() {
         return serverId;
@@ -24,11 +28,11 @@ public class Request {
         this.url = url;
     }
 
-    public HttpMethod getHttpMethod() {
-        return httpMethod;
+    public FullHttpRequest getRequest() {
+        return request;
     }
 
-    public void setHttpMethod(HttpMethod httpMethod) {
-        this.httpMethod = httpMethod;
+    public void setRequest(FullHttpRequest request) {
+        this.request = request;
     }
 }

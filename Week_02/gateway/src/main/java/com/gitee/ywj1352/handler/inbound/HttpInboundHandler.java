@@ -1,5 +1,6 @@
 package com.gitee.ywj1352.handler.inbound;
 
+import com.gitee.ywj1352.core.pojo.Request;
 import com.gitee.ywj1352.filter.HttpRequestFilter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -18,6 +19,7 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
     public HttpInboundHandler(List<HttpRequestFilter> requestFilters) {
         this.requestFilters = requestFilters;
     }
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
@@ -27,18 +29,19 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         try {
             FullHttpRequest fullRequest = (FullHttpRequest) msg;
-            doFilter(fullRequest,ctx);
-        } catch(Exception e) {
+            Request request = new Request(fullRequest);
+            doFilter(request, ctx);
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ReferenceCountUtil.release(msg);
         }
     }
 
-    private void doFilter(FullHttpRequest fullRequest,ChannelHandlerContext ctx){
-        if (requestFilters!=null &&  requestFilters.size() > 0){
-            for (HttpRequestFilter requestFilter:requestFilters) {
-                requestFilter.filter(fullRequest,ctx);
+    private void doFilter(Request fullRequest, ChannelHandlerContext ctx) {
+        if (requestFilters != null && requestFilters.size() > 0) {
+            for (HttpRequestFilter requestFilter : requestFilters) {
+                requestFilter.filter(fullRequest, ctx);
             }
         }
     }
