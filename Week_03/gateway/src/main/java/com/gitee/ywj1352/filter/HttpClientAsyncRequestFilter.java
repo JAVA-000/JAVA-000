@@ -12,11 +12,16 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public class HttpClientAsyncRequestFilter implements HttpRequestFilter{
 
+    private final HttpExecutor httpExecutor;
+
+    public HttpClientAsyncRequestFilter(HttpExecutor httpExecutor) {
+        this.httpExecutor = httpExecutor;
+    }
+
     @Override
     public void filter(Request fullRequest, ChannelHandlerContext ctx) {
         String url = fullRequest.getUrl();
-        HttpExecutor httpExecutor = new HttpExecutor();
-        httpExecutor.fetchGet(fullRequest.getRequest(),ctx, fullRequest.getUrl());
+        httpExecutor.fetchRequest(fullRequest.getRequest(),ctx, fullRequest.getUrl());
     }
 
 }
