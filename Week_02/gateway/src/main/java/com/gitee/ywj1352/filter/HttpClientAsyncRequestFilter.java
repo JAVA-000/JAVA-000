@@ -20,7 +20,6 @@ public class HttpClientAsyncRequestFilter implements HttpRequestFilter{
 
     @Override
     public void filter(Request fullRequest, ChannelHandlerContext ctx) {
-        String url = fullRequest.getUrl();
         httpExecutor.fetchRequest(fullRequest.getRequest(),ctx, fullRequest.getUrl());
     }
 

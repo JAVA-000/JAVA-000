@@ -35,3 +35,31 @@ https: //github. com/dromara/soul
 
 
 ![avatar](img/Netty工作模型.jpg)
+
+
+## 作业
+
+
+其中 的 路由 filter 为 : `RouterHttpRequestFilter` 
+       key-value filter 为 : `NioHeaderFilter`
+       HTTP请求 filter 为: `HttpClientAsyncRequestFilter()` 其中 构造方法可以 选择为`HttpClientExecutor` asynchttpclient |
+       `Netty4ClientExecutor` Netty4Client
+       
+
+```java
+public class HttpChannelInitializer extends ChannelInitializer {
+
+    @Override
+    protected void initChannel(Channel channel) throws Exception {
+        ChannelPipeline pipeline = channel.pipeline();
+        // 业务 handler 设置
+        pipeline.addLast(new HttpResponseEncoder());
+        pipeline.addLast(new HttpRequestDecoder());
+        pipeline.addLast(new HttpObjectAggregator(1024 * 1024));
+        pipeline.addLast(new HttpOutboundHandler(Arrays.asList(new DefaultHttpResponseFilter())));
+       // pipeline.addLast(new HttpInboundHandler(Arrays.asList(new RouterHttpRequestFilter(new RandomRouter()), new NioHeaderFilter(), new HttpClientAsyncRequestFilter(new HttpClientExecutor()))));
+        pipeline.addLast(new HttpInboundHandler(Arrays.asList(new RouterHttpRequestFilter(new RandomRouter()), new NioHeaderFilter(), new HttpClientAsyncRequestFilter(new Netty4ClientExecutor()))));
+        pipeline.addLast(new LoggingHandler(LogLevel.INFO));
+    }
+}
+```

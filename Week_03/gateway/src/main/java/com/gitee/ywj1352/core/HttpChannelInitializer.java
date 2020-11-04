@@ -8,6 +8,7 @@ import com.gitee.ywj1352.handler.inbound.HttpInboundHandler;
 import com.gitee.ywj1352.handler.outbound.HttpOutboundHandler;
 import com.gitee.ywj1352.router.RandomRouter;
 import com.gitee.ywj1352.utils.HttpClientExecutor;
+import com.gitee.ywj1352.utils.Netty4ClientExecutor;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -29,7 +30,8 @@ public class HttpChannelInitializer extends ChannelInitializer {
         pipeline.addLast(new HttpRequestDecoder());
         pipeline.addLast(new HttpObjectAggregator(1024 * 1024));
         pipeline.addLast(new HttpOutboundHandler(Arrays.asList(new DefaultHttpResponseFilter())));
-        pipeline.addLast(new HttpInboundHandler(Arrays.asList(new RouterHttpRequestFilter(new RandomRouter()), new NioHeaderFilter(), new HttpClientAsyncRequestFilter(new HttpClientExecutor()))));
+       // pipeline.addLast(new HttpInboundHandler(Arrays.asList(new RouterHttpRequestFilter(new RandomRouter()), new NioHeaderFilter(), new HttpClientAsyncRequestFilter(new HttpClientExecutor()))));
+        pipeline.addLast(new HttpInboundHandler(Arrays.asList(new RouterHttpRequestFilter(new RandomRouter()), new NioHeaderFilter(), new HttpClientAsyncRequestFilter(new Netty4ClientExecutor()))));
         pipeline.addLast(new LoggingHandler(LogLevel.INFO));
     }
 }
