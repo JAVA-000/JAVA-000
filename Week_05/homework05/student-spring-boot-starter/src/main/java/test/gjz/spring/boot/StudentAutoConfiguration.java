@@ -23,7 +23,7 @@ import test.gjz.spring.boot.properties.StudentProperties;
  * </pre>
  */
 @Configuration
-@ConditionalOnClass({Klass.class, Student.class})
+@ConditionalOnClass({Student.class})
 @ConditionalOnProperty(prefix = "school.student",value = "enable",matchIfMissing = true)
 @EnableConfigurationProperties(StudentProperties.class)
 public class StudentAutoConfiguration {
