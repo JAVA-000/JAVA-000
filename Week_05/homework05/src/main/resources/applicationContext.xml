@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    
+    <bean id="school1"
+          class="test.gjz.spring.day1.School" primary="true">
+        <property name="name" value="先锋" />
+        <property name="address" value="中国广东" />
+    </bean>
+
+    <bean name="school2" class="test.gjz.spring.day1.School">
+        <property name="name" value="凤翔"/>
+        <property name="address" value="中国广西"/>
+    </bean>
+
+    <bean name="student1" class="test.gjz.spring.day1.Student">
+        <property name="name" value="小明"/>
+        <property name="school" ref="school2"/>
+    </bean>
+
+    <bean name="student2" class="test.gjz.spring.day1.Student">
+        <property name="name" value="小红"/>
+        <property name="school" ref="school1"/>
+    </bean>
+
+    <bean id="grade" class="test.gjz.spring.day1.Grade">
+        <property name="students">
+            <list>
+                <ref bean="student1"/>
+                <ref bean="student2"/>
+            </list>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="test.gjz.spring.day1" />
+</beans>
