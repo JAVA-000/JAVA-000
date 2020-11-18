@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+school:
+  student:
+    id: 1
+    name: 李四

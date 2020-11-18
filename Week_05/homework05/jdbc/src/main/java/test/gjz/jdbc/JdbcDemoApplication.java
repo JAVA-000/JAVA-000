@@ -1,13 +1,9 @@
 package test.gjz.jdbc;
 
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 /**
  *
@@ -44,7 +40,7 @@ public class JdbcDemoApplication {
 			List<User> users = select(connection);
 			System.out.println("查询结果结果：" + users);
 
-			if (!CollectionUtils.isEmpty(users)) {
+			if (users != null && users.size() > 0) {
 				User firstUser = users.get(0);
 				firstUser.setName("李四");
 				update(connection, firstUser);
@@ -65,10 +61,21 @@ public class JdbcDemoApplication {
 		}
 
 
+		//批量插入数据
+		List<User> users = new ArrayList<>();
+		User user1 ;
+		for (int i = 0; i < 5; i++) {
+			user1= new User();
+			user1.setUserId(UUID.randomUUID().toString().replace("-", ""));
+			user1.setName("user" + i);
+			user1.setAge(i + 20);
+			user1.setAddress("address" + i);
+			users.add(user1);
+		}
 
+		batchCreate(connection, users);
 
 		DbUtil.closeConnect(connection);
-
 	}
 
 
@@ -137,7 +144,7 @@ public class JdbcDemoApplication {
 			return;
 		}
 
-		if (CollectionUtils.isEmpty(users)) {
+		if (users == null || users.isEmpty()) {
 			return;
 		}
 

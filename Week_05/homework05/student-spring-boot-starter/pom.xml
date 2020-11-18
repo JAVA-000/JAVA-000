@@ -11,7 +11,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot</artifactId>
+    <groupId>org.example</groupId>
+    <artifactId>student-spring-boot-starter</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>
@@ -36,15 +38,6 @@
             <artifactId>activemq-pool</artifactId>
             <version>5.15.0</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.49</version>
-        </dependency>
-
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
