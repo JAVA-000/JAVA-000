@@ -7,7 +7,7 @@ import lombok.Data;
  * 用户
  * </pre>
  *
- * @author jiazhen.guo@meicloud.com
+ * @author guojz
  * @version 1.00.00
  * @createDate 2020/11/18 15:06
  * <pre>

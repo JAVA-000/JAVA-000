@@ -12,7 +12,7 @@ import java.util.Properties;
  * 原生JDBC使用
  * </pre>
  *
- * @author jiazhen.guo@meicloud.com
+ * @author guojz
  * @version 1.00.00
  * @createDate 2020/11/18 11:44
  * <pre>
