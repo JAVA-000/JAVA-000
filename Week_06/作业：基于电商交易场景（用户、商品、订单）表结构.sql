@@ -1,0 +1,170 @@
+DROP TABLE IF EXISTS t_user;
+CREATE TABLE t_user(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    user_name VARCHAR(64)    COMMENT '用户名' ,
+    password VARCHAR(64) NOT NULL   COMMENT '密码' ,
+    nick_name VARCHAR(64)    COMMENT '昵称' ,
+    gender INT(10)    COMMENT '性别：0->未知；1->男；2->女' ,
+    phone VARCHAR(16)    COMMENT '手机号码' ,
+    email VARCHAR(128)    COMMENT '邮箱' ,
+    birthday DATE    COMMENT '生日' ,
+    city VARCHAR(64)    COMMENT '所做城市' ,
+    job VARCHAR(100)    COMMENT '职业' ,
+    status INT(10)    COMMENT '帐号启用状态:0->禁用；1->启用' ,
+    register_time DATETIME    COMMENT '注册时间' ,
+    create_by BIGINT(20)    COMMENT '创建人' ,
+    create_date DATETIME    COMMENT '创建时间' ,
+    last_update_by BIGINT(20)    COMMENT '最后修改人' ,
+    last_update_date DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '用户表 ';
+
+ALTER TABLE t_user ADD UNIQUE index_user_name(user_name);
+ALTER TABLE t_user ADD UNIQUE index_phone(phone);
+
+DROP TABLE IF EXISTS t_user_receive_address;
+CREATE TABLE t_user_receive_address(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    user_id BIGINT(20)    COMMENT '用户ID' ,
+    name VARCHAR(100)    COMMENT '收货人名称' ,
+    phone VARCHAR(16)    COMMENT '电话' ,
+    default_status INT(10)    COMMENT '是否为默认' ,
+    post_code VARCHAR(16)    COMMENT '邮政编码' ,
+    province VARCHAR(100)    COMMENT '省份/直辖市' ,
+    city VARCHAR(100)    COMMENT '城市' ,
+    region VARCHAR(100)    COMMENT '区' ,
+    detail_address VARCHAR(128)    COMMENT '详细地址(街道)' ,
+    create_by BIGINT(20)    COMMENT '创建人' ,
+    create_date DATETIME    COMMENT '创建时间' ,
+    last_update_by BIGINT(20)    COMMENT '最后修改人' ,
+    last_update_date DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '用户收货地址表 ';
+
+ALTER TABLE t_user_receive_address ADD INDEX index_user_id(user_id);
+
+DROP TABLE IF EXISTS t_product;
+CREATE TABLE t_product(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    brand_id BIGINT(20)    COMMENT '品牌ID' ,
+    product_category_id BIGINT(19)    COMMENT '产品分类ID' ,
+    name VARCHAR(64) NOT NULL   COMMENT '商品名称' ,
+    product_sn VARCHAR(64) NOT NULL   COMMENT '商品编号' ,
+    sub_title VARCHAR(255)    COMMENT '副标题' ,
+    description TEXT    COMMENT '商品描述' ,
+    price DECIMAL(10,2)    COMMENT '价格' ,
+    unit VARCHAR(16)    COMMENT '单位' ,
+    weight DECIMAL(10,2)    COMMENT '商品重量，默认为克' ,
+    delete_status INT(10)    COMMENT '删除状态：0->未删除；1->已删除' ,
+    pic_url VARCHAR(255)    COMMENT '图片链接' ,
+    album_pics VARCHAR(255)    COMMENT '画册图片，连产品图片限制为5张，以逗号分割' ,
+    detail_title VARCHAR(255)    COMMENT '详情标题' ,
+    detail_desc TEXT    COMMENT '详情描述' ,
+    detail_html TEXT    COMMENT '详情网页内容' ,
+    create_by VARCHAR(32)    COMMENT '创建人' ,
+    create_time DATETIME    COMMENT '创建时间' ,
+    last_updated_by VARCHAR(32)    COMMENT '最后修改人' ,
+    last_updated_time DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '商品信息表 ';
+
+ALTER TABLE t_product ADD UNIQUE index_product_sn(product_sn);
+
+DROP TABLE IF EXISTS t_brand;
+CREATE TABLE t_brand(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    name VARCHAR(64)    COMMENT '品牌名称' ,
+    company_name VARCHAR(128)    COMMENT '所属公司名称' ,
+    logo VARCHAR(255)    COMMENT '品牌logo' ,
+    big_pic VARCHAR(255)    COMMENT '专区大图' ,
+    brand_story TEXT    COMMENT '品牌故事' ,
+    create_by VARCHAR(32)    COMMENT '创建人' ,
+    create_time DATETIME    COMMENT '创建时间' ,
+    last_updated_by VARCHAR(32)    COMMENT '最后修改人' ,
+    last_updated_time DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '商品品牌表 ';
+
+DROP TABLE IF EXISTS t_product_category;
+CREATE TABLE t_product_category(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    parent_id BIGINT(20)    COMMENT '上级分类的编号：0表示一级分类' ,
+    name VARCHAR(64)    COMMENT '分类名称' ,
+    level INT(10)    COMMENT '分类级别：0->1级；1->2级' ,
+    show_status INT(10)    COMMENT '显示状态：0->不显示；1->显示' ,
+    icon VARCHAR(255)    COMMENT '图标' ,
+    description TEXT    COMMENT '描述' ,
+    create_by VARCHAR(32)    COMMENT '创建人' ,
+    create_time DATETIME    COMMENT '创建时间' ,
+    last_updated_by VARCHAR(32)    COMMENT '最后修改人' ,
+    last_updated_time DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '商品分类表 ';
+
+DROP TABLE IF EXISTS t_order;
+CREATE TABLE t_order(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    user_id BIGINT(19) NOT NULL   COMMENT '用户ID' ,
+    order_sn VARCHAR(64)    COMMENT '订单编号' ,
+    user_name VARCHAR(64)    COMMENT '用户帐号' ,
+    total_amount DECIMAL(10,2)    COMMENT '订单总金额' ,
+    pay_amount DECIMAL(10,2)    COMMENT '应付金额（实际支付金额）' ,
+    freight_amount DECIMAL(10,2)    COMMENT '运费金额' ,
+    pay_type INT(10)    COMMENT '支付方式：0->未支付；1->支付宝；2->微信' ,
+    status INT(10)    COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单' ,
+    address_id BIGINT(20)    COMMENT '配送地址ID' ,
+    delivery_company VARCHAR(64)    COMMENT '物流公司(配送方式)' ,
+    delivery_sn VARCHAR(64)    COMMENT '物流单号' ,
+    remark VARCHAR(500)    COMMENT '订单备注' ,
+    confirm_status INT(10)    COMMENT '确认收货状态：0->未确认；1->已确认' ,
+    delete_status INT(10) NOT NULL   COMMENT '删除状态：0->未删除；1->已删除' ,
+    payment_time DATETIME    COMMENT '支付时间' ,
+    delivery_time DATETIME    COMMENT '发货时间' ,
+    receive_time DATETIME    COMMENT '确认收货时间' ,
+    comment_time DATETIME    COMMENT '评价时间' ,
+    create_by VARCHAR(32)    COMMENT '创建人' ,
+    create_time DATETIME    COMMENT '创建时间' ,
+    last_updated_by VARCHAR(32)    COMMENT '最后修改人' ,
+    last_updated_time DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '订单表 ';
+
+ALTER TABLE t_order ADD UNIQUE index_order_sn(order_sn);
+
+DROP TABLE IF EXISTS t_order_item;
+CREATE TABLE t_order_item(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    order_id BIGINT(20)    COMMENT '订单ID' ,
+    order_sn VARCHAR(64)    COMMENT '订单编号' ,
+    product_id BIGINT(19)    COMMENT '商品ID' ,
+    product_price DECIMAL(10,2)    COMMENT '销售价格' ,
+    product_quantity INT(10)    COMMENT '购买数量' ,
+    total_amount DECIMAL(10,2)    COMMENT '商品金额小计' ,
+    create_by VARCHAR(32)    COMMENT '创建人' ,
+    create_time DATETIME    COMMENT '创建时间' ,
+    last_updated_by VARCHAR(32)    COMMENT '最后修改人' ,
+    last_updated_time DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '订单包含商品表 ';
+
+ALTER TABLE t_order_item ADD INDEX index_order_id(order_id);
+
+DROP TABLE IF EXISTS t_product_comment;
+CREATE TABLE t_product_comment(
+    id BIGINT(20) NOT NULL AUTO_INCREMENT  COMMENT '主键ID' ,
+    product_id BIGINT(20)    COMMENT '商品ID' ,
+    user_id VARCHAR(255)    COMMENT '用户ID' ,
+    start INT(10)    COMMENT '评价星数：0->5' ,
+    show_status INT(10)    COMMENT '显示状态' ,
+    read_count INT(10)    COMMENT '阅读数' ,
+    content TEXT    COMMENT '评价内容' ,
+    pics VARCHAR(1000)    COMMENT '上传图片地址，以逗号隔开' ,
+    create_by VARCHAR(32)    COMMENT '创建人' ,
+    create_time DATETIME    COMMENT '创建时间' ,
+    last_updated_by VARCHAR(32)    COMMENT '最后修改人' ,
+    last_updated_time DATETIME    COMMENT '最后修改时间' ,
+    PRIMARY KEY (id)
+) COMMENT = '商品评价表 ';
+
+ALTER TABLE t_product_comment ADD INDEX index_product_id(product_id);
+ALTER TABLE t_product_comment ADD INDEX index_user_id(user_id);
