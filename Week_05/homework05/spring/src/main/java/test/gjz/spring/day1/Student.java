@@ -7,7 +7,7 @@ import lombok.Data;
  * 学生
  * </pre>
  *
- * @author jiazhen.guo@meicloud.com
+ * @author guojz
  * @version 1.00.00
  * @createDate 2020/11/18 9:49
  * <pre>
