@@ -1,4 +1,4 @@
-
+drop table if exists `zlh_user`;
 CREATE TABLE `zlh_user` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(32) NOT NULL COMMENT '名称，做登录名',
@@ -13,7 +13,7 @@ CREATE TABLE `zlh_user` (
   PRIMARY KEY (`id`))
 COMMENT = '用户表';
 
-
+drop table if exists `zlh_product`;
 CREATE TABLE `zlh_product` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `product_code` VARCHAR(32) NOT NULL COMMENT '商品编码',
@@ -27,6 +27,7 @@ CREATE TABLE `zlh_product` (
   PRIMARY KEY (`id`))
 COMMENT = '商品表';
 
+drop table if exists `zlh_product_snapshot`;
 CREATE TABLE `zlh_product_snapshot` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `product_code` VARCHAR(32) NOT NULL COMMENT '商品编码',
@@ -40,6 +41,7 @@ CREATE TABLE `zlh_product_snapshot` (
   PRIMARY KEY (`id`))
 COMMENT = '商品快照表';
 
+drop table if exists `zlh_product_review`;
 CREATE TABLE `zlh_product_review` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `product_id` BIGINT(20) NOT NULL COMMENT '商品id',
@@ -51,6 +53,7 @@ CREATE TABLE `zlh_product_review` (
   PRIMARY KEY (`id`))
 COMMENT = '商品评价';
 
+drop table if exists `zlh_user_address`;
 CREATE TABLE `zlh_user_address` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `user_id` BIGINT(20) NOT NULL COMMENT '用户ID',
@@ -68,6 +71,7 @@ CREATE TABLE `zlh_user_address` (
   PRIMARY KEY (`id`))
 COMMENT = '用户收件地址表';
 
+drop table if exists `zlh_order`;
 CREATE TABLE `test1`.`zlh_order` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `product_snapshot_id` BIGINT(20) NOT NULL COMMENT '商品快照ID',
