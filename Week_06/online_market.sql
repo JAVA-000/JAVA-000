@@ -1,3 +1,4 @@
+
 CREATE TABLE `zlh_user` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(32) NOT NULL COMMENT '名称，做登录名',
