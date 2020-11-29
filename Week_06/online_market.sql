@@ -5,6 +5,8 @@ CREATE TABLE `zlh_user` (
   `password` VARCHAR(32) NULL COMMENT '密码',
   `tel` VARCHAR(13) NULL COMMENT '手机号',
   `email` VARCHAR(16) NULL COMMENT '邮箱',
+  `gender` TINYINT(1) NULL COMMENT '性别',
+  `card_no` VARCHAR(18) NULL COMMENT '身份证号码',
   `head_pic` VARCHAR(32) NULL COMMENT '头像地址',
   `deleted` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否删除 0 正常 1删除',
   PRIMARY KEY (`id`))
