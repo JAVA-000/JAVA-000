@@ -553,4 +553,27 @@
       last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <insert id="batchInsertOrder" parameterType="list">
+    insert into t_order (user_id, order_sn,
+    user_name, total_amount, pay_amount,
+    freight_amount, pay_type, status,
+    address_id, delivery_company, delivery_sn,
+    remark, confirm_status, delete_status,
+    payment_time, delivery_time, receive_time,
+    comment_time, create_by, create_time)
+    values
+    <foreach collection="orders" item="item"
+             index="index" separator=",">
+      (#{item.userId}, #{item.orderSn},
+      #{item.userName}, #{item.totalAmount}, #{item.payAmount},
+      #{item.freightAmount}, #{item.payType}, #{item.status},
+      #{item.addressId}, #{item.deliveryCompany}, #{item.deliverySn},
+      #{item.remark}, #{item.confirmStatus}, #{item.deleteStatus},
+      #{item.paymentTime}, #{item.deliveryTime}, #{item.receiveTime},
+      #{item.commentTime}, #{item.createBy}, #{item.createTime})
+    </foreach>
+  </insert>
+
+
 </mapper>

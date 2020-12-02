@@ -13,11 +13,6 @@ class BatchInsertApplicationTests {
 	BatchInsertService batchInsertService;
 
 	@Test
-	void testInsertOneRecord(){
-		batchInsertService.batchInsertOneRecord();
-	}
-
-	@Test
 	void testBatchInsertBatchRecord(){
 		batchInsertService.batchInsertBatchRecord();
 	}

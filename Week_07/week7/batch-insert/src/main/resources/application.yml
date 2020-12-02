@@ -7,3 +7,9 @@ spring:
     url: jdbc:mysql://42.194.163.249:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: test
     password: 123456
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mapper/**/*Mapper.xml
+  type-aliases-package: com.gjz.test.**.domain
