@@ -25,17 +25,17 @@
 -- ----------------------------
 CREATE TABLE customer_login
 (
-    customer_id   INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '用户ID',
+    id   INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '用户ID',
     login_name    VARCHAR(20)                 NOT NULL COMMENT '用户登录名',
     password      CHAR(32)                    NOT NULL COMMENT 'md5加密的密码',
     user_stats    TINYINT                     NOT NULL DEFAULT 1 COMMENT '用户状态',
     modified_time TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_customerid (customer_id)
+    PRIMARY KEY pk_customerid (id)
 ) ENGINE = innodb COMMENT '用户登录表';
 
 CREATE TABLE customer_inf
 (
-    customer_inf_id    INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '自增主键ID',
+    id    INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '自增主键ID',
     customer_id        INT UNSIGNED                NOT NULL COMMENT 'customer_login表的自增ID',
     customer_name      VARCHAR(20)                 NOT NULL COMMENT '用户真实姓名',
     identity_card_type TINYINT                     NOT NULL DEFAULT 1 COMMENT '证件类型：1 身份证，2 军官证，3 护照',
@@ -49,22 +49,22 @@ CREATE TABLE customer_inf
     customer_level     TINYINT                     NOT NULL DEFAULT 1 COMMENT '会员级别：1 普通会员，2 青铜，3白银，4黄金，5钻石',
     user_money         DECIMAL(8, 2)               NOT NULL DEFAULT 0.00 COMMENT '用户余额',
     modified_time      TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_customerinfid (customer_inf_id)
+    PRIMARY KEY pk_customerinfid (id)
 ) ENGINE = innodb COMMENT '用户信息表';
 
 CREATE TABLE customer_level_inf
 (
-    customer_level TINYINT      NOT NULL AUTO_INCREMENT COMMENT '会员级别ID',
+    id TINYINT      NOT NULL AUTO_INCREMENT COMMENT '会员级别ID',
     level_name     VARCHAR(10)  NOT NULL COMMENT '会员级别名称',
     min_point      INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '该级别最低积分',
     max_point      INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '该级别最高积分',
     modified_time  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_levelid (customer_level)
+    PRIMARY KEY pk_levelid (id)
 ) ENGINE = innodb COMMENT '用户级别信息表';
 
 CREATE TABLE customer_addr
 (
-    customer_addr_id INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '自增主键ID',
+    id INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '自增主键ID',
     customer_id      INT UNSIGNED                NOT NULL COMMENT 'customer_login表的自增ID',
     zip              SMALLINT                    NOT NULL COMMENT '邮编',
     province         SMALLINT                    NOT NULL COMMENT '地区表中省份的ID',
@@ -73,29 +73,29 @@ CREATE TABLE customer_addr
     address          VARCHAR(200)                NOT NULL COMMENT '具体的地址门牌号',
     is_default       TINYINT                     NOT NULL COMMENT '是否默认',
     modified_time    TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_customeraddid (customer_addr_id)
+    PRIMARY KEY pk_customeraddid (id)
 ) ENGINE = innodb COMMENT '用户地址表';
 
 CREATE TABLE customer_point_log
 (
-    point_id     INT UNSIGNED     NOT NULL AUTO_INCREMENT COMMENT '积分日志ID',
+    id     INT UNSIGNED     NOT NULL AUTO_INCREMENT COMMENT '积分日志ID',
     customer_id  INT UNSIGNED     NOT NULL COMMENT '用户ID',
     source       TINYINT UNSIGNED NOT NULL COMMENT '积分来源：0订单，1登陆，2活动',
     refer_number INT UNSIGNED     NOT NULL DEFAULT 0 COMMENT '积分来源相关编号',
     change_point SMALLINT         NOT NULL DEFAULT 0 COMMENT '变更积分数',
     create_time  TIMESTAMP        NOT NULL COMMENT '积分日志生成时间',
-    PRIMARY KEY pk_pointid (point_id)
+    PRIMARY KEY pk_pointid (id)
 ) ENGINE = innodb COMMENT '用户积分日志表';
 
 CREATE TABLE customer_balance_log
 (
-    balance_id  INT UNSIGNED     NOT NULL AUTO_INCREMENT COMMENT '余额日志ID',
+    id  INT UNSIGNED     NOT NULL AUTO_INCREMENT COMMENT '余额日志ID',
     customer_id INT UNSIGNED     NOT NULL COMMENT '用户ID',
     source      TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '记录来源：1订单，2退货单',
     source_sn   INT UNSIGNED     NOT NULL COMMENT '相关单据ID',
     create_time TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录生成时间',
     amount      DECIMAL(8, 2)    NOT NULL DEFAULT 0.00 COMMENT '变动金额',
-    PRIMARY KEY pk_balanceid (balance_id)
+    PRIMARY KEY pk_balanceid (id)
 ) ENGINE = innodb COMMENT '用户余额变动表';
 
 -- ----------------------------
@@ -103,7 +103,7 @@ CREATE TABLE customer_balance_log
 -- ----------------------------
 CREATE TABLE brand_info
 (
-    brand_id      SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '品牌ID',
+    id      SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '品牌ID',
     brand_name    VARCHAR(50)                      NOT NULL COMMENT '品牌名称',
     telephone     VARCHAR(50)                      NOT NULL COMMENT '联系电话',
     brand_web     VARCHAR(100) COMMENT '品牌网络',
@@ -112,24 +112,24 @@ CREATE TABLE brand_info
     brand_status  TINYINT                          NOT NULL DEFAULT 0 COMMENT '品牌状态,0禁用,1启用',
     brand_order   TINYINT                          NOT NULL DEFAULT 0 COMMENT '排序',
     modified_time TIMESTAMP                        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_brandid (brand_id)
+    PRIMARY KEY pk_brandid (id)
 ) ENGINE = innodb COMMENT '品牌信息表';
 
 CREATE TABLE product_category
 (
-    category_id     SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '分类ID',
+    id     SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '分类ID',
     category_name   VARCHAR(10)                      NOT NULL COMMENT '分类名称',
     category_code   VARCHAR(10)                      NOT NULL COMMENT '分类编码',
     parent_id       SMALLINT UNSIGNED                NOT NULL DEFAULT 0 COMMENT '父分类ID',
     category_level  TINYINT                          NOT NULL DEFAULT 1 COMMENT '分类层级',
     category_status TINYINT                          NOT NULL DEFAULT 1 COMMENT '分类状态',
     modified_time   TIMESTAMP                        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_categoryid (category_id)
+    PRIMARY KEY pk_categoryid (id)
 ) ENGINE = innodb COMMENT '商品分类表';
 
 CREATE TABLE supplier_info
 (
-    supplier_id     INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '供应商ID',
+    id     INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '供应商ID',
     supplier_code   CHAR(8)                     NOT NULL COMMENT '供应商编码',
     supplier_name   CHAR(50)                    NOT NULL COMMENT '供应商名称',
     supplier_type   TINYINT                     NOT NULL COMMENT '供应商类型：1.自营，2.平台',
@@ -140,12 +140,12 @@ CREATE TABLE supplier_info
     address         VARCHAR(200)                NOT NULL COMMENT '供应商地址',
     supplier_status TINYINT                     NOT NULL DEFAULT 0 COMMENT '状态：0禁止，1启用',
     modified_time   TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_supplierid (supplier_id)
+    PRIMARY KEY pk_supplierid (id)
 ) ENGINE = innodb COMMENT '供应商信息表';
 
 CREATE TABLE product_info
 (
-    product_id        INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '商品ID',
+    id        INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '商品ID',
     product_core      CHAR(16)                    NOT NULL COMMENT '商品编码',
     product_name      VARCHAR(20)                 NOT NULL COMMENT '商品名称',
     bar_code          VARCHAR(50)                 NOT NULL COMMENT '国条码',
@@ -168,12 +168,12 @@ CREATE TABLE product_info
     descript          TEXT                        NOT NULL COMMENT '商品描述',
     indate            TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '商品录入时间',
     modified_time     TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_productid (product_id)
+    PRIMARY KEY pk_productid (id)
 ) ENGINE = innodb COMMENT '商品信息表';
 
 CREATE TABLE product_pic_info
 (
-    product_pic_id INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '商品图片ID',
+    id INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '商品图片ID',
     product_id     INT UNSIGNED                NOT NULL COMMENT '商品ID',
     pic_desc       VARCHAR(50) COMMENT '图片描述',
     pic_url        VARCHAR(200)                NOT NULL COMMENT '图片URL',
@@ -181,12 +181,12 @@ CREATE TABLE product_pic_info
     pic_order      TINYINT                     NOT NULL DEFAULT 0 COMMENT '图片排序',
     pic_status     TINYINT                     NOT NULL DEFAULT 1 COMMENT '图片是否有效：0无效 1有效',
     modified_time  TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_picid (product_pic_id)
+    PRIMARY KEY pk_picid (id)
 ) ENGINE = innodb COMMENT '商品图片信息表';
 
 CREATE TABLE product_comment
 (
-    comment_id    INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '评论ID',
+    id    INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '评论ID',
     product_id    INT UNSIGNED                NOT NULL COMMENT '商品ID',
     order_id      BIGINT UNSIGNED             NOT NULL COMMENT '订单ID',
     customer_id   INT UNSIGNED                NOT NULL COMMENT '用户ID',
@@ -195,7 +195,7 @@ CREATE TABLE product_comment
     audit_status  TINYINT                     NOT NULL COMMENT '审核状态：0未审核，1已审核',
     audit_time    TIMESTAMP                   NOT NULL COMMENT '评论时间',
     modified_time TIMESTAMP                   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_commentid (comment_id)
+    PRIMARY KEY pk_commentid (id)
 ) ENGINE = innodb COMMENT '商品评论表';
 
 
@@ -204,7 +204,7 @@ CREATE TABLE product_comment
 -- ----------------------------
 CREATE TABLE order_master
 (
-    order_id           INT UNSIGNED    NOT NULL AUTO_INCREMENT COMMENT '订单ID',
+    id           INT UNSIGNED    NOT NULL AUTO_INCREMENT COMMENT '订单ID',
     order_sn           BIGINT UNSIGNED NOT NULL COMMENT '订单编号 yyyymmddnnnnnnnn',
     customer_id        INT UNSIGNED    NOT NULL COMMENT '下单人ID',
     shipping_user      VARCHAR(10)     NOT NULL COMMENT '收货人姓名',
@@ -227,12 +227,12 @@ CREATE TABLE order_master
     order_point        INT UNSIGNED    NOT NULL DEFAULT 0 COMMENT '订单积分',
     invoice_time       VARCHAR(100) COMMENT '发票抬头',
     modified_time      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_orderid (order_id)
+    PRIMARY KEY pk_orderid (id)
 ) ENGINE = innodb COMMENT '订单主表';
 
 CREATE TABLE order_detail
 (
-    order_detail_id INT UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '订单详情表ID',
+    id INT UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '订单详情表ID',
     order_id        INT UNSIGNED  NOT NULL COMMENT '订单表ID',
     product_id      INT UNSIGNED  NOT NULL COMMENT '订单商品ID',
     product_name    VARCHAR(50)   NOT NULL COMMENT '商品名称',
@@ -243,24 +243,24 @@ CREATE TABLE order_detail
     fee_money       DECIMAL(8, 2) NOT NULL DEFAULT 0.00 COMMENT '优惠分摊金额',
     w_id            INT UNSIGNED  NOT NULL COMMENT '仓库ID',
     modified_time   TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_orderdetailid (order_detail_id)
+    PRIMARY KEY pk_orderdetailid (id)
 ) ENGINE = innodb COMMENT '订单详情表';
 
 CREATE TABLE order_cart
 (
-    cart_id        INT UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '购物车ID',
+    id        INT UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT '购物车ID',
     customer_id    INT UNSIGNED  NOT NULL COMMENT '用户ID',
     product_id     INT UNSIGNED  NOT NULL COMMENT '商品ID',
     product_amount INT           NOT NULL COMMENT '加入购物车商品数量',
     price          DECIMAL(8, 2) NOT NULL COMMENT '商品价格',
     add_time       TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入购物车时间',
     modified_time  TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_cartid (cart_id)
+    PRIMARY KEY pk_cartid (id)
 ) ENGINE = innodb COMMENT '购物车表';
 
 CREATE TABLE warehouse_info
 (
-    w_id             SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '仓库ID',
+    id             SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '仓库ID',
     warehouse_sn     CHAR(5)           NOT NULL COMMENT '仓库编码',
     warehoust_name   VARCHAR(10)       NOT NULL COMMENT '仓库名称',
     warehouse_phone  VARCHAR(20)       NOT NULL COMMENT '仓库电话',
@@ -271,12 +271,12 @@ CREATE TABLE warehouse_info
     address          VARCHAR(100)      NOT NULL COMMENT '仓库地址',
     warehouse_status TINYINT           NOT NULL DEFAULT 1 COMMENT '仓库状态：0禁用，1启用',
     modified_time    TIMESTAMP         NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_wid (w_id)
+    PRIMARY KEY pk_wid (id)
 ) ENGINE = innodb COMMENT '仓库信息表';
 
 CREATE TABLE warehouse_product
 (
-    wp_id          INT UNSIGNED      NOT NULL AUTO_INCREMENT COMMENT '商品库存ID',
+    id          INT UNSIGNED      NOT NULL AUTO_INCREMENT COMMENT '商品库存ID',
     product_id     INT UNSIGNED      NOT NULL COMMENT '商品ID',
     w_id           SMALLINT UNSIGNED NOT NULL COMMENT '仓库ID',
     current_cnt    INT UNSIGNED      NOT NULL DEFAULT 0 COMMENT '当前商品数量',
@@ -284,16 +284,16 @@ CREATE TABLE warehouse_product
     in_transit_cnt INT UNSIGNED      NOT NULL DEFAULT 0 COMMENT '在途数据',
     average_cost   DECIMAL(8, 2)     NOT NULL DEFAULT 0.00 COMMENT '移动加权成本',
     modified_time  TIMESTAMP         NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_wpid (wp_id)
+    PRIMARY KEY pk_wpid (id)
 ) ENGINE = innodb COMMENT '商品库存表';
 
 CREATE TABLE shipping_info
 (
-    ship_id       TINYINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    id       TINYINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
     ship_name     VARCHAR(20)      NOT NULL COMMENT '物流公司名称',
     ship_contact  VARCHAR(20)      NOT NULL COMMENT '物流公司联系人',
     telephone     VARCHAR(20)      NOT NULL COMMENT '物流公司联系电话',
     price         DECIMAL(8, 2)    NOT NULL DEFAULT 0.00 COMMENT '配送价格',
     modified_time TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-    PRIMARY KEY pk_shipid (ship_id)
+    PRIMARY KEY pk_shipid (id)
 ) ENGINE = innodb COMMENT '物流公司信息表';
