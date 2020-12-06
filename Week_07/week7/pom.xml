@@ -18,6 +18,7 @@
 
     <modules>
         <module>batch-insert</module>
+        <module>multi-source-aop</module>
     </modules>
 
 
