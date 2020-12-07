@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  shardingsphere:
+    datasource:
+      names: master,salve
+    master:
+      type: org.apache.commons.dbcp2.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://42.194.163.249:3307/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
+    salve:
+      type: org.apache.commons.dbcp2.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://42.194.163.249:3308/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.gjz.test.**.domain

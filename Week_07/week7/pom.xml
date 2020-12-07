@@ -19,6 +19,7 @@
     <modules>
         <module>batch-insert</module>
         <module>multi-source-aop</module>
+        <module>multi-source-ss-jdbc</module>
     </modules>
 
 
