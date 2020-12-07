@@ -1,4 +1,4 @@
-package com.gjz.test.multi.source.aop.entity;
+package com.gjz.test.multi.source.entity;
 
 import lombok.Data;
 

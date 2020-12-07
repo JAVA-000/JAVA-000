@@ -1,6 +1,6 @@
-package com.gjz.test.multi.source.aop.service;
+package com.gjz.test.multi.source.service;
 
-import com.gjz.test.multi.source.aop.entity.User;
+import com.gjz.test.multi.source.entity.User;
 
 import java.util.List;
 

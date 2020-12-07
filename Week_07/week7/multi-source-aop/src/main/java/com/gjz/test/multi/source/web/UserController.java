@@ -1,7 +1,7 @@
-package com.gjz.test.multi.source.aop.web;
+package com.gjz.test.multi.source.web;
 
-import com.gjz.test.multi.source.aop.entity.User;
-import com.gjz.test.multi.source.aop.service.UserService;
+import com.gjz.test.multi.source.entity.User;
+import com.gjz.test.multi.source.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -69,8 +69,9 @@ public class UserController {
      * 查询
      * @return
      */
+    @GetMapping(value = "list")
     List<User> list(){
-        return new ArrayList<>();
+        return userService.list();
     }
 }
 

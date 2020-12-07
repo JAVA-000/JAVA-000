@@ -1,4 +1,4 @@
-package com.gjz.test.multi.source.aop.config;
+package com.gjz.test.multi.source.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -35,6 +35,11 @@ public class CustomJdbcTemplate {
     @Bean(name = "salveJdbcTemplate")
     public JdbcTemplate salveJdbcTemplate(@Qualifier("salveDataSource") DataSource salveDataSource){
         return new JdbcTemplate(salveDataSource);
+    }
+
+    @Bean(name = "jdbcTemplate")
+    public JdbcTemplate jdbcTemplate(@Qualifier("dataSource") DataSource dataSource){
+        return new JdbcTemplate(dataSource);
     }
 }
 

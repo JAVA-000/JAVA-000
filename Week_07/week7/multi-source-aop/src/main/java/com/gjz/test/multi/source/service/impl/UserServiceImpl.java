@@ -1,16 +1,13 @@
-package com.gjz.test.multi.source.aop.service.impl;
+package com.gjz.test.multi.source.service.impl;
 
-import com.gjz.test.multi.source.aop.entity.User;
-import com.gjz.test.multi.source.aop.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.gjz.test.multi.source.entity.User;
+import com.gjz.test.multi.source.service.UserService;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,6 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource(name = "salveJdbcTemplate")
     JdbcTemplate salveJdbcTemplate;
+
+    @Resource
+    JdbcTemplate jdbcTemplate;
 
 
     /**
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         String sql = "update user set name = ?, age = ? where id = ?";
 
-        masterJdbcTemplate.update(con -> {
+        jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setInt(2, user.getAge());
@@ -124,7 +124,18 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<User> list() {
-        return null;
+
+        return jdbcTemplate.query("select * from user", new RowMapper<User>() {
+
+            @Override
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                User user = new User();
+                user.setId(rs.getLong(1));
+                user.setName(rs.getString(2));
+                user.setAge(rs.getInt(3));
+                return user;
+            }
+        });
     }
 }
 
