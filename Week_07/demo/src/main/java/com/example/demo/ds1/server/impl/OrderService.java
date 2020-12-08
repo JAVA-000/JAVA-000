@@ -1,6 +1,6 @@
-package com.example.demo.server.impl;
+package com.example.demo.ds1.server.impl;
 
-import com.example.demo.server.IOrderService;
+import com.example.demo.ds1.server.IOrderService;
 
 public class OrderService implements IOrderService {
 

@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.ds1.controller;
 
-import com.example.demo.server.ISchoolService;
+import com.example.demo.ds1.server.ISchoolService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

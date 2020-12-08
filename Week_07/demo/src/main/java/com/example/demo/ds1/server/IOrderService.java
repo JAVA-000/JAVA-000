@@ -1,4 +1,4 @@
-package com.example.demo.server;
+package com.example.demo.ds1.server;
 
 public interface IOrderService {
 

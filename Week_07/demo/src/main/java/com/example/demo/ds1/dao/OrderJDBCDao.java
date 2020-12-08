@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.ds1.dao;
 
 import com.example.demo.util.JDBCUtils;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-@Component
+//@Component
 public class OrderJDBCDao {
 
     public void insertBatchOrder() {

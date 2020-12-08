@@ -1,6 +1,6 @@
-package com.example.demo.server.impl;
+package com.example.demo.ds1.server.impl;
 
-import com.example.demo.server.ISchoolService;
+import com.example.demo.ds1.server.ISchoolService;
 import org.springframework.stereotype.Component;
 
 /**
