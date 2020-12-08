@@ -1,0 +1,32 @@
+package com.gjz.test.ss.jdbc.mapper;
+
+import com.gjz.test.ss.jdbc.entity.User;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+
+/**
+ * @author guojz
+ */
+@Mapper
+public interface UserMapper {
+
+    /**
+     * 获取员工
+     * @param userId
+     * @return
+     */
+    User getUser(Long userId);
+
+    /**
+     * 查询所有员工
+     * @return
+     */
+    List<User> listUser();
+
+    /**
+     * 添加员工
+     * @param user
+     */
+    void createUser(User user);
+}

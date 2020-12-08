@@ -17,7 +17,16 @@ spring:
       url: jdbc:mysql://42.194.163.249:3308/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
       password: 123456
-
+    rules:
+      replica-query:
+        load-balancers:
+          round-robin:
+            type: ROUND_ROBIN
+        data-sources:
+          pr_ds:
+            primary-data-source-name: master
+            replica-data-source-names: salve
+            load-balancer-nam: round-robin
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
