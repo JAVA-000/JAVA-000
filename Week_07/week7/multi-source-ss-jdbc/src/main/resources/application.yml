@@ -4,31 +4,27 @@ server:
 spring:
   shardingsphere:
     datasource:
-      names: master,salve
-    master:
-      type: org.apache.commons.dbcp2.BasicDataSource
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://42.194.163.249:3307/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: 123456
-    salve:
-      type: org.apache.commons.dbcp2.BasicDataSource
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://42.194.163.249:3308/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: 123456
-    rules:
-      replica-query:
-        load-balancers:
-          round-robin:
-            type: ROUND_ROBIN
-        data-sources:
-          pr_ds:
-            primary-data-source-name: master
-            replica-data-source-names: salve
-            load-balancer-nam: round-robin
+      names: master,slave
+      master:
+        type: "com.alibaba.druid.pool.DruidDataSource"
+        driver-class-name: "com.mysql.cj.jdbc.Driver"
+        url: "jdbc:mysql://42.194.163.249:3307/test?useUnicode=true&characterEncoding=utf-8&useSSL=false"
+        username: root
+        password: 123456
+      slave:
+        type: "com.alibaba.druid.pool.DruidDataSource"
+        driver-class-name: "com.mysql.cj.jdbc.Driver"
+        url: "jdbc:mysql://42.194.163.249:3308/test?useUnicode=true&characterEncoding=utf-8&useSSL=false"
+        username: root
+        password: 123456
+    masterslave:
+      name: ms
+      master-data-source-name: master
+      slave-data-source-names: slave
+    props:
+      sql:
+        show: true
+
+
 mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-  mapper-locations: classpath*:mapper/*.xml
-  type-aliases-package: com.gjz.test.**.domain
+  mapper-locations: classpath:/mapper/*Mapper.xml

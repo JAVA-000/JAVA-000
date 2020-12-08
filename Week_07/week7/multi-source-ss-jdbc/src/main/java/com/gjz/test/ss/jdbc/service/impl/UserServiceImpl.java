@@ -1,7 +1,9 @@
 package com.gjz.test.ss.jdbc.service.impl;
 
 import com.gjz.test.ss.jdbc.entity.User;
+import com.gjz.test.ss.jdbc.mapper.UserMapper;
 import com.gjz.test.ss.jdbc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
@@ -29,15 +31,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Resource(name = "masterJdbcTemplate")
-    JdbcTemplate masterJdbcTemplate;
-
-    @Resource(name = "salveJdbcTemplate")
-    JdbcTemplate salveJdbcTemplate;
-
-    @Resource
-    JdbcTemplate jdbcTemplate;
-
+    @Autowired
+    UserMapper userMapper;
 
     /**
      * 添加
@@ -46,15 +41,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void create(User user) {
-
-        String sql = "insert into user(name, age) values (?, ?)";
-
-        masterJdbcTemplate.update((connection)->{
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setInt(2, user.getAge());
-            return preparedStatement;
-        });
+        userMapper.createUser(user);
     }
 
     /**
@@ -64,13 +51,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void delete(Long userId) {
-        String sql = "delete from user where id = ?";
 
-        masterJdbcTemplate.update(con -> {
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setLong(1, userId);
-            return preparedStatement;
-        });
     }
 
     /**
@@ -80,15 +61,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void update(User user) {
-        String sql = "update user set name = ?, age = ? where id = ?";
 
-        jdbcTemplate.update(con -> {
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setInt(2, user.getAge());
-            preparedStatement.setLong(3, user.getId());
-            return preparedStatement;
-        });
     }
 
     /**
@@ -99,22 +72,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User get(Long userId) {
-        String sql = "select * from user where id = ?";
-
-        User user = new User();
-        salveJdbcTemplate.query(con -> {
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setLong(1, userId);
-            return preparedStatement;
-        }, new RowCallbackHandler() {
-            @Override
-            public void processRow(ResultSet rs) throws SQLException {
-                user.setId(rs.getLong(1));
-                user.setName(rs.getString(2));
-                user.setAge(rs.getInt(3));
-            }
-        });
-        return user;
+       return userMapper.getUser(userId);
     }
 
     /**
@@ -124,18 +82,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<User> list() {
-
-        return jdbcTemplate.query("select * from user", new RowMapper<User>() {
-
-            @Override
-            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User user = new User();
-                user.setId(rs.getLong(1));
-                user.setName(rs.getString(2));
-                user.setAge(rs.getInt(3));
-                return user;
-            }
-        });
+       return userMapper.listUser();
     }
 }
 
