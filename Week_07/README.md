@@ -69,3 +69,7 @@ CHANGE MASTER TO
 注意：还有很重要的一点，执行启动命令
 start slave;
 然后就可以开始愉快的同步了
+
+
+demo 配置多个数据源
+demo1 动态切换数据源

@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    ds1:
+      url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: mysql
+    ds2:
+      url: jdbc:mysql://localhost:3307/demo?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: mysql
+    hikari:
+      connection-timeout: 15000   #连接超时时间
+      maximum-pool-size: 50       #连接池最大连接数
+      minimum-idle: 5             #空闲时保持最小连接数
+      idle-timeout: 10000         #空闲连接存活时间
+      connection-test-query: select 1
+
+
+server:
+  port: 8081
+
+
+
+logging:
+  level:
+    root: debug
