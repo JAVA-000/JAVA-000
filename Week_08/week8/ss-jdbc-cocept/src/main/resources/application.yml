@@ -5,13 +5,13 @@ spring:
   shardingsphere:
     datasource:
       names: test0,test1
-      master:
+      test0:
         type: "com.alibaba.druid.pool.DruidDataSource"
         driver-class-name: "com.mysql.cj.jdbc.Driver"
         url: "jdbc:mysql://42.194.163.249:3307/test0"
         username: root
         password: 123456
-      slave:
+      test1:
         type: "com.alibaba.druid.pool.DruidDataSource"
         driver-class-name: "com.mysql.cj.jdbc.Driver"
         url: "jdbc:mysql://42.194.163.249:3307/test1"
@@ -27,16 +27,21 @@ spring:
           algorithm-expression: test$->{id % 2}
       tables:
         t_order:
-          actual-data-nodes: test$->{0..1}.t_order$->{0..1}
+          actual-data-nodes: test$->{0..1}.t_order$->{0..15}
           table-strategy:
             inline:
               sharding-column: id
-              algorithm-expression: t_order$->{order_id % 2}
+              algorithm-expression: t_order$->{id % 16}
           key-generator:
             column: id
             type: SNOWFLAKE
-      binding-tables: t_order
-      broadcast-tables: t_config
+            props:
+              worker:
+                id: 123
+              max:
+                vibration:
+                  offset: 15
+
 
 
 mybatis:
