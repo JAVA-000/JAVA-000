@@ -19,7 +19,7 @@ import java.io.IOException;
  *mybatis多数据源1配置文件
  */
 @Configuration
-@MapperScan(basePackages = "com.example.demo.ds1.**", sqlSessionTemplateRef = "ds1SqlSessionTemplate")
+@MapperScan(basePackages = "com.example.demo.ds1", sqlSessionTemplateRef = "ds1SqlSessionTemplate")
 public class MybatisConfigDs1 {
 
     @Autowired

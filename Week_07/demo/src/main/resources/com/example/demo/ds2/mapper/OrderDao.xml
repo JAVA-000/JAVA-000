@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.ds1.dao.OrderDao">
-    <resultMap id="baseResultMap" type="com.example.demo.ds1.model.Order">
+<mapper namespace="com.example.demo.ds2.dao.OrderDao">
+    <resultMap id="baseResultMap" type="com.example.demo.ds2.model.Order">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="product_snapshot_id" jdbcType="BIGINT" property="productSnapshotId"/>
         <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
@@ -25,12 +25,12 @@
         zlh_order
     </sql>
 
-    <insert id="insertOrder" keyColumn="id" useGeneratedKeys="true" parameterType="com.example.demo.ds1.model.Order">
-        insert into zlh_order(product_snapshot_id, order_no, total_fee, express_fee, discount_fee,
-        real_payment_fee, pay_flow_no, order_status, order_create_time, payment_time, express_time)
-        values (#{productSnapshotId},#{orderNo},#{totalFee},#{expressFee},#{discountFee},#{realPaymentFee},
-        #{payFlowNo},#{orderStatus},#{orderCreateTime},#{paymentTime},#{expressTime});
-    </insert>
+    <select id="findByOrderId" resultMap="baseResultMap">
+        select
+        <include refid="baseColumns"/>
+        from <include refid="baseTable"/>
+        where id = #{id}
+    </select>
 
 
 </mapper>

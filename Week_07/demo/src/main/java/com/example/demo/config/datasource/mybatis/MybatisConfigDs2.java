@@ -17,7 +17,7 @@ import javax.sql.DataSource;
  *mybatis多数据源2配置文件
  */
 @Configuration
-@MapperScan(basePackages = "com.example.demo.ds2.**", sqlSessionTemplateRef = "ds2SqlSessionTemplate")
+@MapperScan(basePackages = "com.example.demo.ds2", sqlSessionTemplateRef = "ds2SqlSessionTemplate")
 public class MybatisConfigDs2 {
 
     @Autowired

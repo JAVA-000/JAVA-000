@@ -1,12 +1,11 @@
 package com.example.demo.ds1.dao;
 
 import com.example.demo.ds1.model.Order;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
+@Component("orderDao")
 public interface OrderDao {
 
-    Order findByOrderId(@Param("id") Long id);
+    void insertOrder(Order order);
 
 }
