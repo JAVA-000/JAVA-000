@@ -23,7 +23,7 @@ public class MybatisConfig {
         sqlSessionFactoryBean.setDataSource(dynamicRoutingDataSource);
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().
                 getResources("classpath*:com/example/demo/**/*.xml"));
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.example.demo");
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.example.demo.**");
         return sqlSessionFactoryBean.getObject();
     }
 

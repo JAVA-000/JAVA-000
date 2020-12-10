@@ -25,7 +25,8 @@
         zlh_order
     </sql>
 
-    <insert id="insertOrder" keyColumn="id" useGeneratedKeys="true" parameterType="com.example.demo.ds1.model.Order">
+    <insert id="insertOrder" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.example.demo.ds1.model.Order">
         insert into zlh_order(product_snapshot_id, order_no, total_fee, express_fee, discount_fee,
         real_payment_fee, pay_flow_no, order_status, order_create_time, payment_time, express_time)
         values (#{productSnapshotId},#{orderNo},#{totalFee},#{expressFee},#{discountFee},#{realPaymentFee},
