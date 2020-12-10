@@ -73,3 +73,4 @@ start slave;
 
 demo 配置多个数据源
 demo1 动态切换数据源
+demo2 数据库框架版本数据源

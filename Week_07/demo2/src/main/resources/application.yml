@@ -1,0 +1,35 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: ds1,ds2
+      ds1:
+        jdbc-url: jdbc:mysql://localhost:3306/demo?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: mysql
+      ds2:
+        jdbc-url: jdbc:mysql://localhost:3307/demo?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: mysql
+    rules:
+      replica-query:
+        load-balancers:
+          round-robin:
+            type: ROUND_ROBIN
+        data-sources:
+          pr-ds:
+            primary-data-source-name: ds1
+            replica-data-source-names: ds2
+            load-balancer-name: round_robin
+
+server:
+  port: 9081
+
+
+
+logging:
+  level:
+    root: debug
