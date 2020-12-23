@@ -29,6 +29,7 @@
 
     <modules>
         <module>ss-jdbc-cocept</module>
+        <module>hmily-tcc-demo</module>
     </modules>
 
     <dependencies>
