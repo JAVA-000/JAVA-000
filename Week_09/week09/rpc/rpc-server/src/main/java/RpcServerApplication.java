@@ -1,15 +1,22 @@
 import com.alibaba.fastjson.JSON;
-import com.gjz.test.rpc.api.entitys.RpcfxRequest;
-import com.gjz.test.rpc.api.entitys.RpcfxResponse;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.gjz.test.core.api.RpcfxRequest;
+import com.gjz.test.core.api.RpcfxResponse;
 import com.gjz.test.rpc.api.entitys.User;
 import com.gjz.test.rpc.api.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * <pre>
@@ -25,6 +32,9 @@ import org.springframework.web.bind.annotation.RequestBody;
  * </pre>
  */
 @SpringBootApplication
+@ComponentScan("com.gjz.test.*")
+@RestController
+@Slf4j
 public class RpcServerApplication implements ApplicationContextAware {
 
 
@@ -45,23 +55,23 @@ public class RpcServerApplication implements ApplicationContextAware {
      * @param request
      * @return
      */
-    @PostMapping("/")
-    public RpcfxResponse call(@RequestBody RpcfxRequest request){
+    @PostMapping("/request")
+    public RpcfxResponse call(@RequestBody RpcfxRequest request) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
+        log.info("rpc http 调用------");
         // 获取rpc调用的类
         String serviceClass = request.getServiceClass();
 
         // 获取实例
-        UserService userService = (UserService) this.applicationContext.getBean(serviceClass);
+        Object object = this.applicationContext.getBean(serviceClass);
 
-        Integer id = Integer.valueOf(request.getParams()[0].toString());
-
-        User user = userService.getUser(Long.valueOf(id));
+        // 获取方法
+        Method method = object.getClass().getMethod(request.getMethod());
+        Object result = method.invoke(object, request.getParams());
 
         RpcfxResponse response = new RpcfxResponse();
         response.setStatus(true);
-        response.setResult(JSON.);
-
+        response.setResult(JSON.toJSONString(result, SerializerFeature.WriteClassName));
         return response;
 
 

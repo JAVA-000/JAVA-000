@@ -1,4 +1,4 @@
-package com.gjz.test.rpc.api.entitys;
+package com.gjz.test.core.api;
 
 import lombok.Data;
 
