@@ -20,7 +20,7 @@ public class RedisPubSubApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(RedisPubSubApplication.class, args);
         RedisSubscribeService redisSubscribeService = context.getBean("redisSubscribeService", RedisSubscribeService.class);
-        redisSubscribeService.subscribe("chat", new ReceiverInterface<String>() {
+        redisSubscribeService.subscribe("order", new ReceiverInterface<String>() {
             /**
              * 接收消息
              *
@@ -28,8 +28,8 @@ public class RedisPubSubApplication {
              */
             @Override
             public void receiveMessage(String message) {
-                logger.info("接收到消息啦。。。。。");
-                logger.info("消息内容：{}", message);
+                logger.info("接收到新订单啦。。。。。");
+                logger.info("订单内容：{}", message);
             }
 
         });

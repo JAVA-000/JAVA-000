@@ -28,6 +28,6 @@ public class OrderController {
 
     @RequestMapping(value = "/place")
     void placeOrder(String message){
-        redisPublishService.publish("chat", message);
+        redisPublishService.publish("order", message);
     }
 }

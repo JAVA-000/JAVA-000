@@ -10,6 +10,15 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
+    <content url="file://$MODULE_DIR$/../src/main/java">
+      <sourceFolder url="file://$MODULE_DIR$/../src/main/java" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../src/main/resources">
+      <sourceFolder url="file://$MODULE_DIR$/../src/main/resources" type="java-resource" />
+    </content>
+    <content url="file://$MODULE_DIR$/../src/test/java">
+      <sourceFolder url="file://$MODULE_DIR$/../src/test/java" isTestSource="true" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.4.1" level="project" />
@@ -64,6 +73,8 @@
     <orderEntry type="library" name="Maven: io.netty:netty-codec-dns:4.1.55.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.55.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.cache:cache-api:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: io.reactivex.rxjava3:rxjava:3.0.7" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.marshalling:jboss-marshalling-river:2.0.10.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.marshalling:jboss-marshalling:2.0.10.Final" level="project" />
@@ -117,10 +128,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.3.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.7.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-redis-reactive:2.4.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: io.projectreactor:reactor-test:3.4.1" level="project" />
-    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.1" level="project" />
-    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />
   </component>
