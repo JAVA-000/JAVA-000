@@ -1,0 +1,13 @@
+# 配置tomcat端口号
+server:
+  port: 8080
+cache:
+  redis:
+    host: 42.194.163.249
+    port: 6379
+    auth: 123456
+
+# 配置日志
+logging:
+  level:
+    com.xxx: debug

@@ -18,6 +18,7 @@
         <module>rpc-client</module>
         <module>rpc-server</module>
         <module>rpc-core</module>
+        <module>dubbo</module>
     </modules>
 
 
