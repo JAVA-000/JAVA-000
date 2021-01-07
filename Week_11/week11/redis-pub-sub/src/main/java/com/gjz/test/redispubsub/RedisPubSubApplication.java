@@ -28,11 +28,27 @@ public class RedisPubSubApplication {
              */
             @Override
             public void receiveMessage(String message) {
-                logger.info("接收到新订单啦。。。。。");
+                logger.info("接收到新订单，结算啦。。。。。");
                 logger.info("订单内容：{}", message);
             }
 
         });
+
+        redisSubscribeService.subscribe("order", new ReceiverInterface<String>() {
+            /**
+             * 接收消息
+             *
+             * @param message
+             */
+            @Override
+            public void receiveMessage(String message) {
+                logger.info("接收到新订单，减库存啦。。。。。");
+                logger.info("订单内容：{}", message);
+            }
+
+        });
+
+
     }
 
 }
