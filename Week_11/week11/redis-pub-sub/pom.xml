@@ -8,38 +8,47 @@
 		<version>2.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
 	<groupId>com.gjz.test</groupId>
-	<artifactId>week11</artifactId>
+	<artifactId>redis-pub-sub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>week11</name>
-	<description>week11 homework</description>
-	<packaging>pom</packaging>
+	<name>redis-pub-sub</name>
+	<description>Redis pub sub</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 
-	<modules>
-		<module>redis-lock</module>
-		<module>redis-count</module>
-		<module>redis-pubsub</module>
-	</modules>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<!--<scope>test</scope>-->
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>

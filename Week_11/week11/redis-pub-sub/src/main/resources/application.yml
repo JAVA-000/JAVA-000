@@ -1,0 +1,8 @@
+# ÅäÖÃtomcat¶Ë¿ÚºÅ
+server:
+  port: 8080
+spring:
+  redis:
+    host: 42.194.163.249
+    port: 6379
+    password: 123456
