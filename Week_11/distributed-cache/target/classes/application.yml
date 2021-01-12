@@ -1,0 +1,25 @@
+server:
+  servlet:
+    context-path: /
+    application-display-name: redis-simple-distributed-lock
+  port: 8080
+
+spring:
+  redis:
+    port: 6379
+    password:
+    database: 0
+    host: localhost
+    client-name: redis-simple-distributed-lock
+    lettuce:
+      pool:
+        max-wait: 5000ms
+        min-idle: 1
+        max-active: 5
+        max-idle: 1
+#    jedis:
+#      pool:
+#        max-wait: 5000ms
+#        max-active: 5
+#        max-idle: 1
+#        min-idle: 1

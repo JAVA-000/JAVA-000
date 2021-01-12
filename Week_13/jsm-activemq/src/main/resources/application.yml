@@ -1,0 +1,16 @@
+# 应用名称
+spring:
+  application:
+    name: jms-activemq
+
+
+  #activemq
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
+  # jms 是否 topic模式
+  jms:
+    pub-sub-domain: true
+
