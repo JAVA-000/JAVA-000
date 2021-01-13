@@ -1,6 +1,7 @@
 ### 学习笔记
 - 消息队列基础
 - Kafka 消息中间件
+
 ![Alt text](./分布式消息.png "分布式消息")
 
 
@@ -30,7 +31,7 @@
 10.（挑战☆☆☆）压测 ActiveMQ 和 RabbitMQ 的性能。
 
 周六作业：
-1.[（必做）搭建一个 3 节点 Kafka 集群，测试功能和性能；实现 spring kafka 下对 kafka 集群的操作，将代码提交到 github。]()
+1.[（必做）搭建一个 3 节点 Kafka 集群，测试功能和性能；实现 spring kafka 下对 kafka 集群的操作，将代码提交到 github。](https://github.com/qxf-Carl/JAVA-000/tree/main/Week_13/kafka)
 
 2.（选做）安装 kafka-manager 工具，监控 kafka 集群状态。
 
