@@ -1,0 +1,64 @@
+server:
+  port: 9081
+
+logging:
+  level:
+    root: debug
+mybatis:
+  mapper-locations: classpath:com/example/demo/**/*.xml
+spring:
+  shardingsphere:
+#    rules:
+#      replica-query:
+#        data-sources:
+#          pr_ds:
+#            primary-data-source-name: ds1
+#            replica-data-source-names: ds2
+#            load-balancer-name: round-robin
+#        load-balancers:
+#          round-robin:
+#            type: ROUND_ROBIN
+#            props:
+#              key: value
+#      sharding:
+#        default-database-strategy:
+#          standard:
+#            sharding-column: id
+#            sharding-algorithm-name: database-inline
+#        binding-tables: zlh_order
+#        tables:
+#          zlh_order:
+#            actual-data-nodes: ds$->{0..1}.zlh_order
+#            key-generate-strategy:
+#              column: id
+#              key-generator-name: snowflake
+#        sharding-algorithms:
+#          database-inline:
+#            type: INLINE
+#            props:
+#              algorithm-expression: ds$->{id % 2}
+#        key-generators:
+#          snowflake:
+#            type: SNOWFLAKE
+#            props:
+#              worker-id: 123
+    datasource:
+      names: ds1,ds2
+      common:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: mysql
+      ds1:
+        jdbc-url: jdbc:mysql://localhost:3306/demo?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+      ds2:
+        jdbc-url: jdbc:mysql://localhost:3307/demo?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    props:
+      sql:
+        show: true
+    masterslave:
+      load-balance-algorithm-type: round_robin
+      name: ms
+      master-data-source-name: ds1
+      slave-data-source-names: ds2
+

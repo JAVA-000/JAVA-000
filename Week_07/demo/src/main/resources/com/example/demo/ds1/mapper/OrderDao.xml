@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.ds1.dao.OrderDao">
+    <resultMap id="baseResultMap" type="com.example.demo.ds1.model.Order">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="product_snapshot_id" jdbcType="BIGINT" property="productSnapshotId"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="total_fee" jdbcType="DECIMAL" property="totalFee"/>
+        <result column="express_fee" jdbcType="DECIMAL" property="expressFee"/>
+        <result column="discount_fee" jdbcType="DECIMAL" property="discountFee"/>
+        <result column="real_payment_fee" jdbcType="DECIMAL" property="realPaymentFee"/>
+        <result column="pay_flow_no" jdbcType="VARCHAR" property="payFlowNo"/>
+        <result column="order_status" jdbcType="TINYINT" property="orderStatus"/>
+        <result column="order_create_time" jdbcType="TIMESTAMP" property="orderCreateTime"/>
+        <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime"/>
+        <result column="express_time" jdbcType="TIMESTAMP" property="expressTime"/>
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+    </resultMap>
+
+    <sql id="baseColumns">
+        id, product_snapshot_id, order_no, total_fee, express_fee, discount_fee, real_payment_fee,
+        pay_flow_no, order_status, order_create_time, payment_time, express_time, deleted
+    </sql>
+    <sql id="baseTable">
+        zlh_order
+    </sql>
+
+    <insert id="insertOrder" keyColumn="id" useGeneratedKeys="true" parameterType="com.example.demo.ds1.model.Order">
+        insert into zlh_order(product_snapshot_id, order_no, total_fee, express_fee, discount_fee,
+        real_payment_fee, pay_flow_no, order_status, order_create_time, payment_time, express_time)
+        values (#{productSnapshotId},#{orderNo},#{totalFee},#{expressFee},#{discountFee},#{realPaymentFee},
+        #{payFlowNo},#{orderStatus},#{orderCreateTime},#{paymentTime},#{expressTime});
+    </insert>
+
+
+</mapper>
