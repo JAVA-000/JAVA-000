@@ -1,0 +1,19 @@
+Java HotSpot(TM) 64-Bit Server VM (25.212-b10) for windows-amd64 JRE (1.8.0_212-b10), built on Apr  1 2019 22:50:23 by "java_re" with MS VC++ 10.0 (VS2010)
+Memory: 4k page, physical 16633200k(8664856k free), swap 27118960k(17586204k free)
+CommandLine flags: -XX:InitialHeapSize=2147483648 -XX:MaxHeapSize=2147483648 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
+0.363: [GC (Allocation Failure) [PSYoungGen: 524800K->87037K(611840K)] 524800K->145279K(2010112K), 0.0330282 secs] [Times: user=0.02 sys=0.05, real=0.03 secs] 
+0.476: [GC (Allocation Failure) [PSYoungGen: 611837K->87035K(611840K)] 670079K->253820K(2010112K), 0.0493808 secs] [Times: user=0.08 sys=0.11, real=0.07 secs] 
+0.629: [GC (Allocation Failure) [PSYoungGen: 611835K->87029K(611840K)] 778620K->378566K(2010112K), 0.0454169 secs] [Times: user=0.13 sys=0.06, real=0.05 secs] 
+0.746: [GC (Allocation Failure) [PSYoungGen: 611829K->87038K(611840K)] 903366K->491404K(2010112K), 0.0411890 secs] [Times: user=0.09 sys=0.03, real=0.04 secs] 
+0.855: [GC (Allocation Failure) [PSYoungGen: 611838K->87036K(611840K)] 1016204K->605068K(2010112K), 0.0429499 secs] [Times: user=0.11 sys=0.02, real=0.04 secs] 
+0.965: [GC (Allocation Failure) [PSYoungGen: 611836K->87030K(320000K)] 1129868K->716478K(1718272K), 0.0406992 secs] [Times: user=0.13 sys=0.06, real=0.04 secs] 
+1.038: [GC (Allocation Failure) [PSYoungGen: 319744K->139802K(465920K)] 949192K->776590K(1864192K), 0.0272123 secs] [Times: user=0.13 sys=0.00, real=0.03 secs] 
+Heap
+ PSYoungGen      total 465920K, used 333393K [0x00000000d5580000, 0x0000000100000000, 0x0000000100000000)
+  eden space 232960K, 83% used [0x00000000d5580000,0x00000000e128dfc8,0x00000000e3900000)
+  from space 232960K, 60% used [0x00000000e3900000,0x00000000ec186828,0x00000000f1c80000)
+  to   space 232960K, 0% used [0x00000000f1c80000,0x00000000f1c80000,0x0000000100000000)
+ ParOldGen       total 1398272K, used 636788K [0x0000000080000000, 0x00000000d5580000, 0x00000000d5580000)
+  object space 1398272K, 45% used [0x0000000080000000,0x00000000a6ddd0d0,0x00000000d5580000)
+ Metaspace       used 2634K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 291K, capacity 386K, committed 512K, reserved 1048576K

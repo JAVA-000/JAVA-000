@@ -1,0 +1,3 @@
+Java HotSpot(TM) 64-Bit Server VM (25.212-b10) for windows-amd64 JRE (1.8.0_212-b10), built on Apr  1 2019 22:50:23 by "java_re" with MS VC++ 10.0 (VS2010)
+Memory: 4k page, physical 16633200k(8665572k free), swap 27118960k(17586516k free)
+CommandLine flags: -XX:InitialHeapSize=512 -XX:MaxHeapSize=536870912 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
